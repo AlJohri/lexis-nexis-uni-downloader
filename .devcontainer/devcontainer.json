@@ -1,0 +1,13 @@
+{
+	"name": "Existing Dockerfile",
+	"context": "..",
+	"dockerFile": "../Dockerfile",
+	"settings": { 
+		"terminal.integrated.shell.linux": null,
+		"python.pythonPath": "/usr/local/bin/python"
+	},
+	"postCreateCommand": "apt-get update && apt-get install -y git",
+	"extensions": [
+		"ms-python.python"
+	]
+}
