@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+PROJECT = "lexis-nexis-uni-downloader"
+
+@task
+def setup():
+	shell(f"brew bundle")
+
+@task
+def build():
+	shell(f"docker build . -t {PROJECT}")
+
+@task
+def run(raw):
+	shell(f"""
+	docker run -it \
+		-e LN_URL=$LN_URL \
+		-e EZPROXY=$EZPROXY \
+		-e MACHINE_ID=$MACHINE_ID \
+		-e SESSION_ID=$SESSION_ID \
+		-v $(pwd)/.envrc:/app/.envrc \
+		-v $(pwd)/src:/app/src \
+		-v $(pwd)/data:/app/data \
+		{PROJECT} {raw}
+	""")
