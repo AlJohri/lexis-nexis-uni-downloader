@@ -6,16 +6,17 @@
 
 2. Set the `LN_URL` environment variable.
 
-<details>
-<summary>Here are some examples:</summary>
-- Columbia: `export LN_URL=https://advance-lexis-com.ezproxy.cul.columbia.edu`
-- Harvard: `export LN_URL=https://advance-lexis-com.ezp-prod1.hul.harvard.edu`
-- Notre Dame: `export LN_URL=https://advance-lexis-com.proxy.library.nd.edu`
-- Multimedia University `export LN_URL=https://advance.lexis.com.proxyvlib.mmu.edu.my`
-- Boston University: `export LN_URL=http://www.lexisnexis.com.ezproxy.bu.edu`
-- Brenau University: `export LN_URL=https://advance-lexis-com.ezproxy.brenau.edu:2040`
-- Queens College: `export LN_URL=http://www.lexisnexis.com.queens.ezproxy.cuny.edu:2048`
-</details>
+    <details>
+    <summary>Here are some examples:</summary>
+
+    - Columbia: `export LN_URL=https://advance-lexis-com.ezproxy.cul.columbia.edu`
+    - Harvard: `export LN_URL=https://advance-lexis-com.ezp-prod1.hul.harvard.edu`
+    - Notre Dame: `export LN_URL=https://advance-lexis-com.proxy.library.nd.edu`
+    - Multimedia University `export LN_URL=https://advance.lexis.com.proxyvlib.mmu.edu.my`
+    - Boston University: `export LN_URL=http://www.lexisnexis.com.ezproxy.bu.edu`
+    - Brenau University: `export LN_URL=https://advance-lexis-com.ezproxy.brenau.edu:2040`
+    - Queens College: `export LN_URL=http://www.lexisnexis.com.queens.ezproxy.cuny.edu:2048`
+    </details>
 
 3. Run the setup:
 
