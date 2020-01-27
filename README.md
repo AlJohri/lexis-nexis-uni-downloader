@@ -33,6 +33,13 @@ This repository will help you download data from Nexis Uni. It is dockerized so 
     $(kar get-cookies)
     ```
 
+    <details>
+    <summary>Running into issues?</summary>
+
+    This is the only part of the project that is not dockerized. If you run into issues with grabbing the cookies, manually get the cookies from Google Chrome. You can see which cookies are required in `scripts/get-cookies.py`. Export these three environment variables: `EZPROXY`, `MACHINE_ID`, and `SESSION_ID` before proceeding to the next step.
+    </details>
+
+
 5. Update `data/query.txt` as needed and download data.
 
     ```
