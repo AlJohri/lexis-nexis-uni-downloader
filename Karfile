@@ -19,14 +19,12 @@ task-build() {
 #@run
 #+Run docker container.
 task-run() {
-    COOKIES=$HOME/Library/Application\ Support/Google/Chrome/Default/Cookies
     docker run -it \
         -e LN_URL="$LN_URL" \
         -e EZPROXY="$EZPROXY" \
         -e MACHINE_ID="$MACHINE_ID" \
         -e SESSION_ID="$SESSION_ID" \
         -v $(pwd):/app \
-        -v "$COOKIES":"$COOKIES" \
         $PROJECT "$@"
 }
 
