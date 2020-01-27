@@ -1,8 +1,10 @@
 # lexis-nexis-uni-downloader
 
+This repository will help you download data from Nexis Uni. It is dockerized so it should work in most environments. It uses cookies directly from Google Chrome to authenticate with Nexis.
+
 ## Quickstart
 
-1. Log into your univerity's Lexis Uni using `Google Chrome`.
+1. Log into your univerity's Lexis Uni using **Google Chrome**.
 
 2. Set the `LN_URL` environment variable.
 
@@ -47,3 +49,7 @@ You can use [`direnv`](https://direnv.net/) to simplify development. This will a
 3. Add `export LN_URL=...` into a `.envrc` file.
 4. Add the cookie environment variables into the `.envrc` file: `kar get-cookies >> .envrc`
 5. Run `direnv allow` to mark the contents of the `.envrc` file as save for execution.
+
+## Disclaimer
+
+This library is not associated with Lexis Nexis. Please read the Lexis Nexis [terms of use](https://www.lexisnexis.com/terms/). Note that it is against the terms to use automatic software to download content. Use this software at your own risk.
