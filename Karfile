@@ -1,53 +1,40 @@
-#!/usr/bin/env python3
+#!/usr/bin/env bash
 
-PROJECT = "lexis-nexis-uni-downloader"
+PROJECT="lexis-nexis-uni-downloader"
 
-@task
-def setup():
-    shell(f"brew bundle")
+#@setup
+#+Setup initial system dependencies and build docker image.
+task-setup() {
+    brew bundle
+    task-build
+}
 
-@task
-def build():
-    shell(f"docker build . -t {PROJECT}")
 
-@task
-def run(raw):
-    shell(f"""
+#@build
+#+Build docker image.
+task-build() {
+    docker build . -t $PROJECT
+}
+
+#@run
+#+Run docker container.
+task-run() {
+    COOKIES=$HOME/Library/Application\ Support/Google/Chrome/Default/Cookies
     docker run -it \
-        -e LN_URL=$LN_URL \
-        -e EZPROXY=$EZPROXY \
-        -e MACHINE_ID=$MACHINE_ID \
-        -e SESSION_ID=$SESSION_ID \
+        -e LN_URL="$LN_URL" \
+        -e EZPROXY="$EZPROXY" \
+        -e MACHINE_ID="$MACHINE_ID" \
+        -e SESSION_ID="$SESSION_ID" \
         -v $(pwd):/app \
-        {PROJECT} {raw}
-    """)
+        -v "$COOKIES":"$COOKIES" \
+        $PROJECT "$@"
+}
 
-@task
-def get_cookies():
-    """
-    Extract necessary cookies from Google Chrome.
-    """
-
-    import textwrap
-
-    script = textwrap.dedent("""
-    import browser_cookie3
-    cj = browser_cookie3.chrome()
-    cookies1 = cj._cookies['advance-lexis-com.ezproxy.cul.columbia.edu']['/']
-    cookies2 = cj._cookies['.ezproxy.cul.columbia.edu']['/']
-    print('export EZPROXY={}'.format(cookies2['ezproxy'].value))
-    print('export MACHINE_ID={}'.format(cookies1['LexisMachineId'].value))
-    print('export SESSION_ID={}'.format(cookies1['ASP.NET_SessionId'].value))
-    """).strip()
-
-    print("Creating temporary local virtualenv to extract cookies from chrome...")
-
-    # delete the temporary virtualenv environment to not cause confusion
-    # with docker + vscode
-    shell(f"""
-        python3 -m venv .venv &&
-        .venv/bin/pip install -q --upgrade pip &&
-        .venv/bin/pip install -q browser_cookie3 &&
-        .venv/bin/python -c "{script}" &&
-        rm -rf .venv
-    """)
+#@get-cookies
+#+Extract necessary cookies from Google Chrome.
+task-get-cookies() {
+    python3 -m venv .local-venv &&
+    .local-venv/bin/pip install -q --upgrade pip &&
+    .local-venv/bin/pip install -q browser_cookie3 &&
+    .local-venv/bin/python scripts/get-cookies.py
+}
