@@ -31,7 +31,7 @@
     $(kar get-cookies)
     ```
 
-5. Download data.
+5. Update `data/query.txt` as needed and download data.
 
     ```
     kar run python scripts/download-index.py
