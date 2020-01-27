@@ -45,5 +45,5 @@ You can use [`direnv`](https://direnv.net/) to simplify development. This will a
 1. Install direnv: `brew install direnv`
 2. Add the `direnv` hook into your shell profile: https://direnv.net/docs/hook.html
 3. Add `export LN_URL=...` into a `.envrc` file.
-4. Add the cookie environment variables into the `.envrc` file: `$(kar get-cookies) >> .envrc`
+4. Add the cookie environment variables into the `.envrc` file: `kar get-cookies >> .envrc`
 5. Run `direnv allow` to mark the contents of the `.envrc` file as save for execution.
