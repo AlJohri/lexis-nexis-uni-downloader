@@ -25,15 +25,15 @@ else:
 	eprint(f"Unable to parse the ezproxy domain from the LN_URL: {LN_URL}")
 
 def get(domain, path, key):
-	eprint(f"Getting {key} from {domain}{path}...")
+	# eprint(f"Getting {key} from {domain}{path}...")
 	try:
 		return cj._cookies[domain][path][key].value
 	except KeyError:
-		eprint(f"Unable to find {key!r} cookie on Google Chrome for "
+		eprint(f"\x1b[31mERROR\x1b[0m Unable to find {key!r} cookie on Google Chrome for "
 			  f"domain: {domain!r} and path: {path!r}")
 		exit(1)
 
-eprint(f'Getting cookies for domains: {LN_DOMAIN!r} and {LN_EZPROXY_DOMAIN!r}.')
+# eprint(f'Getting cookies for domains: {LN_DOMAIN!r} and {LN_EZPROXY_DOMAIN!r}.')
 
 print('export EZPROXY={}'.format(get(LN_EZPROXY_DOMAIN, '/', 'ezproxy')))
 print('export MACHINE_ID={}'.format(get(LN_DOMAIN, '/', 'LexisMachineId')))
